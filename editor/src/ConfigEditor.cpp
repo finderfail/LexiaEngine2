@@ -9,7 +9,7 @@ ConfigEditor::ConfigEditor(EditorWindow& window) : window_(window), cursorX_(0),
 ConfigEditor::~ConfigEditor() {}
 
 void ConfigEditor::run() {
-    window_.setTitle("Config Editor");
+    window_.setTitle("Lexia Development Kit: Config Editor");
     while (true) {
       window_.clear();
       drawConfig();

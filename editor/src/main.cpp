@@ -17,14 +17,15 @@ void clearScreen() {
 int main() {
     int screenWidth = 120;
     int screenHeight = 30;
-    EditorWindow window(screenWidth, screenHeight, "Game Editor");
+    EditorWindow window(screenWidth, screenHeight, "Lexia Development Kit");
     ProjectManager projectManager;
     Compiler compiler;
     std::string currentProjectDir;
-     std::string input;
+    std::string input;
     while(true)
     {
         clearScreen();
+        std::cout << "Powered by Lexia Engine 2" << std::endl;
         std::cout << "1. Create new project" << std::endl;
         std::cout << "2. Load project" << std::endl;
         std::cout << "3. Exit" << std::endl;

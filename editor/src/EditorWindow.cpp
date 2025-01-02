@@ -13,7 +13,7 @@ EditorWindow::EditorWindow(int width, int height, const std::string& title)
   ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);
   if (width_ > size.ws_col || height_ > size.ws_row)
   {
-      std::cerr << "Error: terminal size is too small!" << std::endl;
+      std::cerr << "Error: terminal size is too small! (needed: 120x30)" << std::endl;
       exit(1);
   }
 }
@@ -27,7 +27,7 @@ void EditorWindow::clear() {
 }
 
 void EditorWindow::draw() {
-    std::cout << "\033[H";  // move cursor to top left
+    std::cout << "\033[H";  
   
     std::cout << title_ << std::endl;
 

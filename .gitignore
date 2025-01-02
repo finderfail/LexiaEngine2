@@ -4,3 +4,5 @@
 /game
 /malmo
 /shooter
+/editor/src/*.o
+/engine/src/*.o

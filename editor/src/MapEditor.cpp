@@ -3,12 +3,19 @@
 #include <iostream>
 #include <sstream>
 
+#include <termios.h>
+#include <unistd.h>
+
 MapEditor::MapEditor(EditorWindow& window) : window_(window), cursorX_(0), cursorY_(0), width_(0), height_(0) {}
 MapEditor::~MapEditor(){}
 
-
 void MapEditor::run() {
     window_.setTitle("Map Editor");
+    struct termios oldSettings, newSettings;
+    tcgetattr(STDIN_FILENO, &oldSettings);
+    newSettings = oldSettings;
+    newSettings.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newSettings);
     while (true) {
       window_.clear();
       drawMap();
@@ -18,6 +25,7 @@ void MapEditor::run() {
       handleInput(input);
       if (input == 'q') break;
     }
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldSettings);
 }
 void MapEditor::loadMap(const std::string& filename) {
     std::ifstream file(filename);

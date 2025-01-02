@@ -11,8 +11,8 @@ ProjectManager::~ProjectManager() {}
 bool ProjectManager::createProject(const std::string& projectName)
 {
     currentProjectDir_ = "./" + projectName;
-    std::string gameSrcDir = currentProjectDir_ + "/src"; // Изменили путь
-    std::string gameBuildDir = currentProjectDir_ + "/build"; // Изменили путь
+    std::string gameSrcDir = currentProjectDir_ + "/src";
+    std::string gameBuildDir = currentProjectDir_ + "/build";
     std::string mapDir = currentProjectDir_ + "/maps";
     std::string configDir = currentProjectDir_ + "/config";
     std::cerr << "Creating root dir: " << currentProjectDir_ << std::endl;
@@ -60,18 +60,18 @@ bool ProjectManager::createProject(const std::string& projectName)
         mainFile << "#include \"../../engine/include/Player.h\"\n";
         mainFile << "#include \"../../engine/include/Raycaster.h\"\n";
         mainFile << "#include \"../../engine/include/Config.h\"\n\n";
-        mainFile << "#include <termios.h>\n"; // Добавили новый заголовок
-        mainFile << "#include <unistd.h>\n"; // Добавили новый заголовок
+        mainFile << "#include <termios.h>\n"; 
+        mainFile << "#include <unistd.h>\n"; 
         mainFile << "int main() {\n";
         mainFile << "  Config config;\n";
         mainFile << "  if (!config.load(\"" << currentProjectDir_ << "/config/game.conf\")) {\n";
         mainFile << "    return 1;\n";
         mainFile << "  }\n";
-        mainFile << " struct termios oldSettings, newSettings;\n"; // Создаем переменные для терминала
-        mainFile << " tcgetattr(STDIN_FILENO, &oldSettings);\n"; // Сохраняем старые настройки терминала
-        mainFile << " newSettings = oldSettings;\n"; // Копируем их
-        mainFile << " newSettings.c_lflag &= ~(ICANON | ECHO);\n"; // Отключаем канонический режим и эхо
-        mainFile << " tcsetattr(STDIN_FILENO, TCSANOW, &newSettings);\n"; // Применяем новые настройки
+        mainFile << " struct termios oldSettings, newSettings;\n";  
+        mainFile << " tcgetattr(STDIN_FILENO, &oldSettings);\n";  
+        mainFile << " newSettings = oldSettings;\n";  
+        mainFile << " newSettings.c_lflag &= ~(ICANON | ECHO);\n"; 
+        mainFile << " tcsetattr(STDIN_FILENO, TCSANOW, &newSettings);\n"; 
         mainFile << "  int screenWidth = config.getInt(\"screenWidth\");\n";
         mainFile << "  int screenHeight = config.getInt(\"screenHeight\");\n";
         mainFile << "  Screen screen(screenWidth, screenHeight);\n";
@@ -97,7 +97,7 @@ bool ProjectManager::createProject(const std::string& projectName)
         mainFile << "      if (move == 'd') player.rotate(0.1);\n";
         mainFile << "      if (move == 'q') isRunning = false;\n";
         mainFile << "   }\n";
-        mainFile << " tcsetattr(STDIN_FILENO, TCSANOW, &oldSettings);\n"; // Возвращаем старые настройки терминала
+        mainFile << " tcsetattr(STDIN_FILENO, TCSANOW, &oldSettings);\n";
         mainFile << "  return 0;\n";
         mainFile << "}\n";
         mainFile.close();
@@ -114,17 +114,17 @@ bool ProjectManager::createProject(const std::string& projectName)
     }
     std::ofstream mapFile(currentProjectDir_ + "/maps/map.txt");
      if (mapFile.is_open()) {
-         mapFile << "################\n";
+        mapFile << "################\n";
         mapFile << "#              #\n";
-        mapFile << "#     #        #\n";
+        mapFile << "#              #\n";
         mapFile << "#              #\n";
         mapFile << "#  # # #       #\n";
         mapFile << "#  #   #       #\n";
-         mapFile << "#  #     #    #\n";
-        mapFile << "#      #  #   #\n";
-        mapFile << "#     #      #\n";
-         mapFile << "################\n";
-         mapFile.close();
+        mapFile << "#  #   #       #\n";
+        mapFile << "#      #       #\n";
+        mapFile << "#      #       #\n";
+        mapFile << "################\n";
+        mapFile.close();
      }
     
   
