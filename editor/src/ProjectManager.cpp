@@ -60,6 +60,7 @@ bool ProjectManager::createProject(const std::string& projectName)
         mainFile << "#include \"../../engine/include/Player.h\"\n";
         mainFile << "#include \"../../engine/include/Raycaster.h\"\n";
         mainFile << "#include \"../../engine/include/Config.h\"\n\n";
+        mainFile << "#define M_PI 3.14159265358979323846\n"; 
         mainFile << "#include <termios.h>\n"; 
         mainFile << "#include <unistd.h>\n"; 
         mainFile << "int main() {\n";
