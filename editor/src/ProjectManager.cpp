@@ -115,16 +115,27 @@ bool ProjectManager::createProject(const std::string& projectName)
     }
     std::ofstream mapFile(currentProjectDir_ + "/maps/map.txt");
      if (mapFile.is_open()) {
-        mapFile << "################\n";
-        mapFile << "#              #\n";
-        mapFile << "#              #\n";
-        mapFile << "#              #\n";
-        mapFile << "#  # # #       #\n";
-        mapFile << "#  #   #       #\n";
-        mapFile << "#  #   #       #\n";
-        mapFile << "#      #       #\n";
-        mapFile << "#      #       #\n";
-        mapFile << "################\n";
+        mapFile << "################################\n";
+        mapFile << "#                              #\n";
+        mapFile << "#                              #\n";
+        mapFile << "#                              #\n";
+        mapFile << "#  # # #                       #\n";
+        mapFile << "#  #   #                       #\n";
+        mapFile << "#  #   #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "#      #                       #\n";
+        mapFile << "################################\n";
         mapFile.close();
      }
     

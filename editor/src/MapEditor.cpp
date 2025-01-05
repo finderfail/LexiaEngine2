@@ -10,7 +10,7 @@ MapEditor::MapEditor(EditorWindow& window) : window_(window), cursorX_(0), curso
 MapEditor::~MapEditor(){}
 
 void MapEditor::run() {
-    window_.setTitle("Map Editor");
+    window_.setTitle("Map Editor [e - Place wall, r - Remove wall, q - Quit]");
     struct termios oldSettings, newSettings;
     tcgetattr(STDIN_FILENO, &oldSettings);
     newSettings = oldSettings;
@@ -53,8 +53,8 @@ void MapEditor::loadMap(const std::string& filename) {
         }
     } else {
       std::cerr << "Error: Map file is empty" << std::endl;
-       width_ = 16;
-       height_ = 16;
+       width_ = 32;
+       height_ = 32;
        mapData_.resize(height_, std::string(width_,' '));
     }
     
