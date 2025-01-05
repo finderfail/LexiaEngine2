@@ -97,18 +97,17 @@ void Raycaster::drawVerticalLine(int x, int wallHeight, float distance) const {
   int endY = (screen_.getHeight() + wallHeight) / 2;
 
     for (int y = startY; y < endY; ++y) {
-          // Вычисляем яркость в зависимости от расстояния
-        float brightness = 1.0f - std::min(1.0f, distance / 10.0f); // 10 это максимальное растояние на котором стена будет темной
-          char pixelChar = '#'; // Символ стены по умолчанию
+        float brightness = 1.0f - std::min(1.0f, distance / 10.0f); 
+          char pixelChar = '#'; 
 
         if (brightness < 0.2)
-            pixelChar = '.'; // Самая далекая стена
+            pixelChar = '.'; // most far wall
         else if(brightness < 0.4)
-           pixelChar = ','; // Далекая стена
+           pixelChar = ','; // far wall
         else if(brightness < 0.6)
-            pixelChar = '-'; // Средняя стена
+            pixelChar = '-'; // mid wall
         else if (brightness < 0.8)
-            pixelChar = '='; // Ближняя стена
+            pixelChar = '='; // near wall
           screen_.setPixel(x, y, pixelChar);
       }
 }

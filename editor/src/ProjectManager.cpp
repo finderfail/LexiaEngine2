@@ -92,8 +92,8 @@ bool ProjectManager::createProject(const std::string& projectName)
         mainFile << "      raycaster.castRays(player);\n";
         mainFile << "      screen.draw();\n";
         mainFile << "      char move = std::getchar();\n";
-        mainFile << "      if (move == 'w') player.move(0.1);\n";
-        mainFile << "      if (move == 's') player.move(-0.1);\n";
+        mainFile << "      if (move == 'w') player.move(0.1, map);\n";
+        mainFile << "      if (move == 's') player.move(-0.1, map);\n";
         mainFile << "      if (move == 'a') player.rotate(-0.1);\n";
         mainFile << "      if (move == 'd') player.rotate(0.1);\n";
         mainFile << "      if (move == 'q') isRunning = false;\n";

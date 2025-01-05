@@ -1,4 +1,5 @@
 #include "../include/Player.h"
+#include "../include/Map.h" // Включаем Map.h
 #include <cmath>
 
 Player::Player(float x, float y, float direction) {
@@ -11,6 +12,7 @@ Player::Player(float x, float y, float direction) {
 Point2D Player::getPosition() const {
     return position_;
 }
+
 Vector2D Player::getDirection() const {
     return direction_;
 }
@@ -25,14 +27,39 @@ void Player::setDirection(float direction) {
     direction_.y = std::sin(direction);
 }
 
-void Player::move(float distance) {
-    position_.x += direction_.x * distance;
-    position_.y += direction_.y * distance;
+
+void Player::move(float distance, const Map& map) {
+  // Временно сохраняем старую позицию
+  float oldX = position_.x;
+  float oldY = position_.y;
+
+  float newX = position_.x + direction_.x * distance;
+  float newY = position_.y + direction_.y * distance;
+  
+    
+  // Проверка коллизии
+  if (!checkCollision(newX, newY, map)) {
+    position_.x = newX;
+    position_.y = newY;
+  } else {
+  }
 }
 
-void Player::rotate(float angle)
-{
+
+void Player::rotate(float angle) {
     float oldDirX = direction_.x;
     direction_.x = direction_.x * std::cos(angle) - direction_.y * std::sin(angle);
     direction_.y = oldDirX * std::sin(angle) + direction_.y * std::cos(angle);
+}
+// Метод проверки коллизии (остается)
+bool Player::checkCollision(float x, float y, const Map& map) const {
+    int mapX = static_cast<int>(x);
+    int mapY = static_cast<int>(y);
+
+    if (mapX < 0 || mapX >= map.getWidth() || mapY < 0 || mapY >= map.getHeight() || map.getTile(mapX, mapY) != ' ')
+    {
+         return true; // Столкновение
+    }
+    
+    return false; // Нет столкновения
 }
