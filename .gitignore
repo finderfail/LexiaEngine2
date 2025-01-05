@@ -6,3 +6,4 @@
 /shooter
 /editor/src/*.o
 /engine/src/*.o
+o.*
