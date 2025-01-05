@@ -18,8 +18,7 @@ bool Compiler::compileProject(const std::string& projectDir)
     std::string engineInc = "engine/include";
     std::string engineLib = "./lib/libengine.a";
 
-    std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game";
-    //std::string command = "pwd";
+    std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -lSDL2";
 
     std::cerr << "Complication command: " << command << std::endl;
     int status = system(command.c_str());

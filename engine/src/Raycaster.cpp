@@ -8,7 +8,7 @@ Raycaster::Raycaster(const Map& map, Screen& screen) : map_(map), screen_(screen
 void Raycaster::castRays(const Player& player) {
     const int screenWidth = screen_.getWidth();
     const int screenHeight = screen_.getHeight();
-    const float fov = M_PI / 3.0f; // Поле зрения 60 градусов
+    const float fov = M_PI / 3.0f;
 
     for (int x = 0; x < screenWidth; ++x) {
         float cameraX = 2.0f * x / static_cast<float>(screenWidth) - 1.0f;

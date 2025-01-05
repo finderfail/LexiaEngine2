@@ -7,11 +7,11 @@ EDITOR_BIN="editor/editor"
 
 echo "Compiling engine..."
 
-g++ -c $ENGINE_SRC_DIR/Screen.cpp -o $ENGINE_SRC_DIR/Screen.o -std=c++11
-g++ -c $ENGINE_SRC_DIR/Map.cpp -o $ENGINE_SRC_DIR/Map.o -std=c++11
-g++ -c $ENGINE_SRC_DIR/Player.cpp -o $ENGINE_SRC_DIR/Player.o -std=c++11
-g++ -c $ENGINE_SRC_DIR/Raycaster.cpp -o $ENGINE_SRC_DIR/Raycaster.o -std=c++11
-g++ -c $ENGINE_SRC_DIR/Config.cpp -o $ENGINE_SRC_DIR/Config.o -std=c++11
+g++ -c $ENGINE_SRC_DIR/Screen.cpp -o $ENGINE_SRC_DIR/Screen.o -lSDL2 -std=c++11
+g++ -c $ENGINE_SRC_DIR/Map.cpp -o $ENGINE_SRC_DIR/Map.o -lSDL2 -std=c++11
+g++ -c $ENGINE_SRC_DIR/Player.cpp -o $ENGINE_SRC_DIR/Player.o -lSDL2 -std=c++11
+g++ -c $ENGINE_SRC_DIR/Raycaster.cpp -o $ENGINE_SRC_DIR/Raycaster.o -lSDL2 -std=c++11
+g++ -c $ENGINE_SRC_DIR/Config.cpp -o $ENGINE_SRC_DIR/Config.o -lSDL2 -std=c++11
 
 ar rcs $ENGINE_LIB_DIR/libengine.a $ENGINE_SRC_DIR/*.o 
 

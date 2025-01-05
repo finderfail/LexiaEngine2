@@ -5,6 +5,7 @@
 /malmo
 /LexiaTournament
 /shooter
+/Test1
 /editor/src/*.o
 /engine/src/*.o
 o.*
