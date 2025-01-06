@@ -4,6 +4,7 @@
         "chrono": "cpp",
         "thread": "cpp",
         "fstream": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "algorithm": "cpp"
     }
 }

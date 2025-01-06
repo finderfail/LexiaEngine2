@@ -18,7 +18,7 @@ bool Compiler::compileProject(const std::string& projectDir)
     std::string engineInc = "engine/include";
     std::string engineLib = "./lib/libengine.a";
     #ifdef __APPLE__ 
-        std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -F/Library/Frameworks -framework SDL2 -I/usr/local/Cellar/sdl2/2.30.11/include/SDL2 -L/usr/local/Cellar/sdl2/2.30.11/lib";
+        std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -F/Library/Frameworks -framework SDL2 -I/usr/local/Cellar/sdl2/2.30.11/include -L/usr/local/Cellar/sdl2/2.30.11/lib";
     #elif defined(__linux__)
         std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -lSDL2";
     #endif
