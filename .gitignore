@@ -6,6 +6,8 @@
 /LexiaTournament
 /shooter
 /Test1
+/build
+/.vscode
 /editor/src/*.o
 /engine/src/*.o
 o.*
