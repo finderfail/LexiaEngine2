@@ -1,5 +1,5 @@
 #include "../include/Screen.h"
-#include "../include/SDL/SDL.h"
+#include <SDL.h>
 #include <iostream>
 #include <algorithm>
 

@@ -17,9 +17,11 @@ bool Compiler::compileProject(const std::string& projectDir)
     std::string buildPath = "./" + projectDir + "/build";
     std::string engineInc = "engine/include";
     std::string engineLib = "./lib/libengine.a";
-
-    std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -lSDL2";
-
+    #ifdef __APPLE__ 
+        std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -F/Library/Frameworks -framework SDL2 -I/usr/local/Cellar/sdl2/2.30.11/include/SDL2 -L/usr/local/Cellar/sdl2/2.30.11/lib";
+    #elif defined(__linux__)
+        std::string command = "g++ " + srcPath + "/main.cpp " + engineLib + " -I" + engineInc + " -o " + buildPath + "/game" + " -lSDL2";
+    #endif
     std::cerr << "Complication command: " << command << std::endl;
     int status = system(command.c_str());
      if (status == -1)

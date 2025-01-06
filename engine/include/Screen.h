@@ -2,7 +2,7 @@
 #define SCREEN_H
 
 #include <vector>
-#include "../include/SDL/SDL.h"
+#include <SDL.h>
 
 class Screen {
 public:
