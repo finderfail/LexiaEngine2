@@ -8,6 +8,8 @@
 /Test1
 /build
 /.vscode
+/lib
+/lib/libengine.a
 /editor/src/*.o
 /engine/src/*.o
 o.*
