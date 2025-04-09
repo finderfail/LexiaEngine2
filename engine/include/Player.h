@@ -1,31 +1,28 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-struct Point2D {
+#include "Map.h"
+
+typedef struct {
     float x;
     float y;
-};
+} Point2D;
 
-struct Vector2D {
+typedef struct {
     float x;
     float y;
-};
+} Vector2D;
 
-class Map;
-class Player {
-public:
-    Player(float x, float y, float direction);
-    Point2D getPosition() const;
-    Vector2D getDirection() const;
-    void setPosition(float x, float y);
-    void setDirection(float direction);
-    void move(float distance, const Map& map);
-    void rotate(float angle);
+typedef struct {
+    Point2D position;
+    Vector2D direction;
+} Player;
 
-private:
-    Point2D position_;
-    Vector2D direction_;
-    bool checkCollision(float x, float y, const Map& map) const;
-};
+Player* Player_create(float x, float y, float direction);
+void Player_destroy(Player* player);
+void Player_move(Player* player, float distance, const Map* map);
+void Player_rotate(Player* player, float angle);
+Point2D Player_getPosition(const Player* player);
+Vector2D Player_getDirection(const Player* player);
 
-#endif
+#endif // PLAYER_H

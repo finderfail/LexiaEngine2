@@ -20,7 +20,7 @@ With LE2, you can:
 
 ## Getting Started
 
-To get started, download LE2, run `mkdir build` `cd build` `cmake ..` `cmake --build .` to compile, and then run `./build/editor`.
+To get started, download LE2, run `mkdir build` `cd build` `cmake ..` `cmake --build ./ --config Release --target all -j 10` to compile, and then run `./build/editor`.
 
 ## Licensing Terms
 

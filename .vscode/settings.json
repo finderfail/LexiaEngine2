@@ -5,6 +5,9 @@
         "thread": "cpp",
         "fstream": "cpp",
         "stdexcept": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "cmath": "cpp",
+        "sstream": "cpp",
+        "cstdio": "cpp"
     }
 }

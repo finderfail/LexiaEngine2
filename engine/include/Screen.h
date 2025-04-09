@@ -1,31 +1,23 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include <vector>
-#include <cstdint>
-#include <string>
 #include <SDL.h>
+#include <stdint.h>
 
-class Screen {
-public:
-    Screen(int width, int height, const char* title);
-    ~Screen();
+typedef struct {
+    int width;
+    int height;
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    SDL_Texture* texture;
+    uint32_t* pixels;
+} Screen;
 
-    int getWidth() const;
-    int getHeight() const;
+Screen* Screen_create(int width, int height, const char* title);
+void Screen_destroy(Screen* screen);
+void Screen_clear(Screen* screen, uint32_t color);
+void Screen_setPixel(Screen* screen, int x, int y, uint32_t color);
+void Screen_render(Screen* screen);
+void Screen_limitFrameRate(Screen* screen, int fps);
 
-    void clear(uint32_t color = 0);
-    void setPixel(int x, int y, uint32_t color);
-    void limitFrameRate(int fps);
-    void render();
-
-private:
-    int width_;
-    int height_;
-    std::vector<uint32_t> pixels_;
-    SDL_Window* window_;
-    SDL_Renderer* renderer_;
-    SDL_Texture* texture_;
-};
-
-#endif
+#endif // SCREEN_H

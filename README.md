@@ -20,7 +20,7 @@ Lexia Engine 2 (LE2) — это игровой движок, который пр
 
 ## Начало работы
 
-Для начала работы скачайте LE2, выполните команду `mkdir build` `cd build` `cmake ..` `cmake --build .` для компиляции и запустите `./build/editor`.
+Для начала работы скачайте LE2, выполните команду `mkdir build` `cd build` `cmake ..` `cmake --build ./ --config Release --target all -j 10` для компиляции и запустите `./build/editor`.
 
 ## Лицензионные условия
 
