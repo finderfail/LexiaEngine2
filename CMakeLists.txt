@@ -49,6 +49,7 @@ add_library(engine_lib STATIC
     ${ENGINE_SRC_DIR}/Player.c
     ${ENGINE_SRC_DIR}/Raycaster.c
     ${ENGINE_SRC_DIR}/Config.c
+    ${ENGINE_SRC_DIR}/Texture.c
 )
 
 target_include_directories(engine_lib PUBLIC

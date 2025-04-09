@@ -1,4 +1,5 @@
 #include "../include/Raycaster.h"
+#include "../include/Texture.h"  // Добавьте заголовочный файл WallTexture
 #include <math.h>
 #include <stdlib.h>
 
@@ -35,7 +36,9 @@ void Raycaster_castRays(Raycaster* raycaster, const Player* player) {
         float distance = Raycaster_getDistanceToWall(raycaster, player->position.x, player->position.y, rayAngle);
         if (distance > 0) {
             int wallHeight = Raycaster_calculateWallHeight(raycaster, distance);
-            Raycaster_drawVerticalLine(raycaster, x, wallHeight, distance);
+            WallTexture* wallTexture = WallTexture_create(0xFF0000FF);  // Пример цвета (синий)
+            Raycaster_drawVerticalLine(raycaster, x, wallHeight, distance, wallTexture);
+            WallTexture_destroy(wallTexture);
         }
     }
 }
@@ -103,24 +106,13 @@ int Raycaster_calculateWallHeight(const Raycaster* raycaster, float distance) {
     return (int)fminf((float)raycaster->screen->height, wallHeight);
 }
 
-void Raycaster_drawVerticalLine(const Raycaster* raycaster, int x, int wallHeight, float distance) {
+void Raycaster_drawVerticalLine(const Raycaster* raycaster, int x, int wallHeight, float distance, const WallTexture* wallTexture) {
     int startY = (raycaster->screen->height - wallHeight) / 2;
     int endY = (raycaster->screen->height + wallHeight) / 2;
 
+    uint32_t color = WallTexture_getColor(wallTexture);
+
     for (int y = startY; y < endY; ++y) {
-        float brightness = 1.0f - fminf(1.0f, distance / 10.0f);
-        char pixelChar = '#';
-
-        if (brightness < 0.2f) {
-            pixelChar = '.'; // most far wall
-        } else if (brightness < 0.6f) {
-            pixelChar = ','; // far wall
-        } else if (brightness < 0.8f) {
-            pixelChar = '-'; // mid wall
-        } else if (brightness < 1.0f) {
-            pixelChar = '='; // near wall
-        }
-
-        Screen_setPixel(raycaster->screen, x, y, pixelChar);
+        Screen_setPixel(raycaster->screen, x, y, color);
     }
 }
