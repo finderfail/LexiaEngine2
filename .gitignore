@@ -12,4 +12,6 @@
 /lib/libengine.a
 /editor/src/*.o
 /engine/src/*.o
+/Test2
+build.sh
 o.*

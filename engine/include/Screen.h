@@ -2,7 +2,9 @@
 #define SCREEN_H
 
 #include <vector>
-#include <SDL2/SDL.h>
+#include <cstdint>
+#include <string>
+#include <SDL.h>
 
 class Screen {
 public:
@@ -14,6 +16,7 @@ public:
 
     void clear(uint32_t color = 0);
     void setPixel(int x, int y, uint32_t color);
+    void limitFrameRate(int fps);
     void render();
 
 private:

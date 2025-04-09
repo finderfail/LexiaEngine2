@@ -20,10 +20,12 @@ void Raycaster::castRays(const Player& player) {
         if (distance > 0)
         {
             int wallHeight = calculateWallHeight(distance);
-            drawVerticalLine(x, wallHeight, distance); 
+            drawVerticalLine(x, wallHeight, distance);
         }
-        
     }
+
+    // Limit the frame rate to 120 FPS
+    screen_.limitFrameRate(120);
 }
 
 float Raycaster::getDistanceToWall(float playerX, float playerY, float angle) const {
@@ -35,13 +37,13 @@ float Raycaster::getDistanceToWall(float playerX, float playerY, float angle) co
 
     float deltaDistX = std::abs(1.0f / dirX);
     float deltaDistY = std::abs(1.0f / dirY);
-    
+
     float sideDistX = 0.0;
     float sideDistY = 0.0;
 
     int stepX = 0;
     int stepY = 0;
-    
+
     if (dirX < 0)
     {
         stepX = -1;
@@ -50,8 +52,8 @@ float Raycaster::getDistanceToWall(float playerX, float playerY, float angle) co
         stepX = 1;
         sideDistX = (mapX + 1.0f - playerX) * deltaDistX;
     }
-    
-     if (dirY < 0)
+
+    if (dirY < 0)
     {
         stepY = -1;
         sideDistY = (playerY - mapY) * deltaDistY;
@@ -62,7 +64,7 @@ float Raycaster::getDistanceToWall(float playerX, float playerY, float angle) co
 
     bool hit = false;
     int side = 0;
-    
+
     while(!hit)
     {
         if (sideDistX < sideDistY)
@@ -71,14 +73,14 @@ float Raycaster::getDistanceToWall(float playerX, float playerY, float angle) co
             mapX += stepX;
             side = 0;
         } else {
-             sideDistY += deltaDistY;
+            sideDistY += deltaDistY;
             mapY += stepY;
             side = 1;
         }
         if (map_.getTile(mapX, mapY) != ' ')
             hit = true;
     }
-    
+
     if (side == 0)
         return (mapX - playerX + (1 - stepX) / 2.0) / dirX;
     else
@@ -91,23 +93,22 @@ float Raycaster::calculateWallHeight(float distance) const {
     return std::min(static_cast<float>(screen_.getHeight()), wallHeight);
 }
 
-
 void Raycaster::drawVerticalLine(int x, int wallHeight, float distance) const {
-  int startY = (screen_.getHeight() - wallHeight) / 2;
-  int endY = (screen_.getHeight() + wallHeight) / 2;
+    int startY = (screen_.getHeight() - wallHeight) / 2;
+    int endY = (screen_.getHeight() + wallHeight) / 2;
 
     for (int y = startY; y < endY; ++y) {
-        float brightness = 1.0f - std::min(1.0f, distance / 10.0f); 
-          char pixelChar = '#'; 
+        float brightness = 1.0f - std::min(1.0f, distance / 10.0f);
+        char pixelChar = '#';
 
         if (brightness < 0.2)
             pixelChar = '.'; // most far wall
         else if(brightness < 0.4)
-           pixelChar = ','; // far wall
+            pixelChar = ','; // far wall
         else if(brightness < 0.6)
             pixelChar = '-'; // mid wall
         else if (brightness < 0.8)
             pixelChar = '='; // near wall
-          screen_.setPixel(x, y, pixelChar);
-      }
+        screen_.setPixel(x, y, pixelChar);
+    }
 }
